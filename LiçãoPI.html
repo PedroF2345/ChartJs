@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <!-- Incluindo a biblioteca Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div style="width: 50%; margin: auto;">
+    <canvas id="lineChart"></canvas>
+    <canvas id="barChart"></canvas>
+  </div>
+
+  <script>
+    // Dados para o gráfico de linhas
+    var lineData = {
+      labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+      datasets: [{
+        label: 'Temperatura',
+        data: [30, 29, 28, 25, 22, 23],
+        borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        yAxisID: 'y-axis-1',
+      }, {
+        label: 'Umidade',
+        data: [80, 82, 80, 85, 80, 83],
+        borderColor: 'rgba(54, 162, 235, 1)',
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        yAxisID: 'y-axis-2',
+      }]
+    };
+
+    // Configurações do eixo y para o gráfico de linhas
+    var lineOptions = {
+      scales: {
+        yAxes: [{
+          type: 'linear',
+          display: true,
+          position: 'left',
+          id: 'y-axis-1',
+        }, {
+          type: 'linear',
+          display: true,
+          position: 'right',
+          id: 'y-axis-2',
+          gridLines: {
+            drawOnChartArea: false,
+          },
+        }],
+      },
+    };
+
+    // Criando o gráfico de linhas
+    var lineChart = new Chart(document.getElementById('lineChart'), {
+      type: 'line',
+      data: lineData,
+      options: lineOptions,
+    });
+
+    // Dados para o gráfico de barras
+    var barData = {
+      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+      datasets: [{
+        label: 'Temperatura',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        data: [22, 24, 27, 23, 20, 18],
+      }, {
+        label: 'Umidade',
+        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        data: [90, 89, 93, 87, 88, 82],
+      }]
+    };
+
+    // Criando o gráfico de barras
+    var barChart = new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: barData,
+    });
+  </script>
+</body>
+</html>
